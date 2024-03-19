@@ -36,13 +36,13 @@ yazacaktır. Aksi takdirde, varsayılan olarak, Cargo yalnızca 0.8.5'ten büyü
 Eğer rand crate iki yeni 0.8.6 ve 0.9.0 sürümlerini yayınladıysa, cargo update'i çalıştırdığınızda aşağıdakileri
 görürsünüz:
 
-![img.png](img.png)
+![img.png](guessing_game/img.png)
 
 Cargo 0.9.0 sürümünü yok sayar. Bu noktada, Cargo.lock dosyanızda şu anda kullandığınız rand crate sürümünün 0.8.5
 olduğunu belirten bir değişiklik de fark edeceksiniz. Rand'ın 0.9.0 sürümünü ya da 0.9.x serisindeki herhangi bir sürümü
 kullanmak için Cargo.toml dosyasını aşağıdaki gibi güncellemeniz gerekir:
 
-![img_1.png](img_1.png)
+![img_1.png](guessing_game/img_1.png)
 
 Cargo build'i bir sonraki çalıştırışınızda, Cargo mevcut crate'lerinin kayıt defterini güncelleyecek ve rand
 gereksinimlerinizi belirttiğiniz yeni sürüme göre yeniden değerlendirecektir.
