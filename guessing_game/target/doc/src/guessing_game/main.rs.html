@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\main.rs`."><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="guessing_game" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<a href="#2" id="2">2</a>
+<a href="#3" id="3">3</a>
+<a href="#4" id="4">4</a>
+<a href="#5" id="5">5</a>
+<a href="#6" id="6">6</a>
+<a href="#7" id="7">7</a>
+<a href="#8" id="8">8</a>
+<a href="#9" id="9">9</a>
+<a href="#10" id="10">10</a>
+<a href="#11" id="11">11</a>
+<a href="#12" id="12">12</a>
+<a href="#13" id="13">13</a>
+<a href="#14" id="14">14</a>
+<a href="#15" id="15">15</a>
+<a href="#16" id="16">16</a>
+<a href="#17" id="17">17</a>
+<a href="#18" id="18">18</a>
+<a href="#19" id="19">19</a>
+<a href="#20" id="20">20</a>
+<a href="#21" id="21">21</a>
+<a href="#22" id="22">22</a>
+<a href="#23" id="23">23</a>
+<a href="#24" id="24">24</a>
+<a href="#25" id="25">25</a>
+<a href="#26" id="26">26</a>
+<a href="#27" id="27">27</a>
+<a href="#28" id="28">28</a>
+<a href="#29" id="29">29</a>
+<a href="#30" id="30">30</a>
+<a href="#31" id="31">31</a>
+<a href="#32" id="32">32</a>
+<a href="#33" id="33">33</a>
+<a href="#34" id="34">34</a>
+<a href="#35" id="35">35</a>
+<a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+<a href="#41" id="41">41</a>
+<a href="#42" id="42">42</a>
+<a href="#43" id="43">43</a>
+<a href="#44" id="44">44</a>
+<a href="#45" id="45">45</a>
+<a href="#46" id="46">46</a>
+<a href="#47" id="47">47</a>
+<a href="#48" id="48">48</a>
+<a href="#49" id="49">49</a>
+<a href="#50" id="50">50</a>
+<a href="#51" id="51">51</a>
+<a href="#52" id="52">52</a>
+<a href="#53" id="53">53</a>
+<a href="#54" id="54">54</a>
+<a href="#55" id="55">55</a>
+<a href="#56" id="56">56</a>
+<a href="#57" id="57">57</a>
+<a href="#58" id="58">58</a>
+<a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+</pre></div><pre class="rust"><code><span class="kw">use </span>std::io;
+<span class="kw">use </span>rand::Rng;
+
+<span class="kw">fn </span>main() {
+    <span class="comment">/* println! bir String'i ekrana yazdıran bir makrodur */
+    </span><span class="macro">println!</span>(<span class="string">"Guess the number"</span>);
+
+    <span class="macro">println!</span>(<span class="string">"Please enter your guess"</span>);
+
+    <span class="comment">/* İlk olarak use rand::Rng; satırını ekliyoruz. Rng özelliği, rastgele sayı üreticilerinin
+    implement ettiği methodları tanımlar ve bu methodları kullanabilmemiz için bu özelliğin kapsam
+    dahilinde olması gerekir. Ardından mevcut thread'e ait gen_range methodu ile 1 ila 100 arasında
+    random bir sayı üretiriz*/
+    </span><span class="kw">let </span>secret_number = rand::thread_rng().gen_range(<span class="number">1</span>..=<span class="number">100</span>);
+
+    <span class="comment">/* Ardından, kullanıcı inputunu saklamak için aşağıdaki gibi bir değişken oluşturacağız
+       Değişkeni oluşturmak için let deyimini kullanıyoruz
+       Rust'ta değişkenler varsayılan olarak immutable'dır, yani değişkene bir değer verdiğimizde değer değişmez.
+       Bir değişkeni mutable (değiştirilebilir) yapmak için değişken adının önüne mut ekleriz:
+
+       Eşittir işaretinin sağında, guess'in bağlı olduğu değer yer alır; bu değer, String'in yeni
+       bir örneğini döndüren bir fonksiyon olan String::new çağrısının sonucudur. String,
+       standart kütüphane tarafından sağlanan, büyüyebilen, UTF-8 kodlu bir metin parçası olan bir
+       dize türüdür.
+
+       ::new satırındaki :: sözdizimi, new öğesinin String türünün ilişkili bir işlevi olduğunu
+       gösterir. İlişkili fonksiyon, bir tür üzerinde (bu durumda String) uygulanan bir fonksiyondur.
+       Bu new fonksiyonu yeni, boş bir String oluşturur. new fonksiyonunu birçok türde bulabilirsiniz,
+       çünkü bir tür yeni değer oluşturan bir fonksiyonun ortak adıdır.
+    */
+    </span><span class="kw">let </span><span class="kw-2">mut </span>guess = String::new();
+
+    <span class="comment">/* io kütüphanesi, std olarak bilinen standart kütüphaneden gelir */
+    /* Kullanmak istediğiniz bir tür başlangıçta yoksa, o türü bir use deyimiyle açıkça kapsama
+    almanız gerekir. std::io kütüphanesini kullanmak size kullanıcı girdisini kabul etme yeteneği de
+    dahil olmak üzere bir dizi yararlı özellik sağlar */
+
+    /* io modülünden stdin fonksiyonunu çağıracağız, bu da kullanıcı girdisini işlememizi
+    sağlayacak. Programın başında use std::io; ile io kütüphanesini içe aktarmamış olsaydık,
+    bu fonksiyon çağrısını std::io::stdin olarak yazarak fonksiyonu yine de kullanabilirdik. */
+    </span>io::stdin()
+        <span class="comment">/* kullanıcı inputunu hangi dizede saklayacağını söylemek için read_line'a argüman olarak
+        &amp;mut guess'i geçiyoruz. read_line'ın tam görevi, kullanıcının standart inputa yazdığı
+        her şeyi almak ve bunu bir dizeye eklemektir (içeriğinin üzerine yazmadan), bu nedenle bu
+        dizeyi bir argüman olarak geçiyoruz. String argümanının mutable olması gerekir, böylece
+        metot stringin içeriğini değiştirebilir. Bu argümanın bir referans olduğunu belirten &amp; işareti,
+        kodunuzun birden fazla bölümünün bir veri parçasına, bu veriyi birden fazla kez belleğe
+        kopyalamak zorunda kalmadan erişmesini sağlar. Referanslar karmaşık bir özelliktir ve Rust'ın
+        en büyük avantajlarından biri referansları kullanmanın ne kadar güvenli ve kolay olduğudur.
+        Bu programı bitirmek için bu detayların çoğunu bilmenize gerek yok. Şimdilik bilmeniz gereken
+        tek şey, değişkenler gibi referansların da varsayılan olarak immutable olduğudur. Bu nedenle,
+        değiştirilebilir yapmak için &amp;guess yerine &amp;mut guess yazmanız gerekir.*/
+        </span>.read_line(<span class="kw-2">&amp;mut </span>guess)
+        <span class="comment">/* Daha önce de belirtildiği gibi, read_line kullanıcının girdiği her şeyi kendisine
+        ilettiğimiz String'e koyar, ancak aynı zamanda bir Result değeri de döndürür. Result,
+        genellikle enum olarak adlandırılan ve birden fazla olası state'den birinde olabilen bir tür
+        olan bir eumeration'dır. Her olası state'e bir varyant diyoruz. Result'ın varyantları
+        Ok ve Err'dir. Ok değişkeni işlemin başarılı olduğunu gösterir ve Ok içinde başarıyla
+        oluşturulan değer bulunur. Err değişkeni, işlemin başarısız olduğu anlamına gelir ve Err,
+        işlemin nasıl veya neden başarısız olduğu hakkında bilgi içerir. Result türündeki değerler,
+        diğer türlerdeki değerler gibi, üzerlerinde tanımlanmış methodlara sahiptir. Bir Result
+        örneğinin çağırabileceğiniz bir expect yöntemi vardır. Bu Result örneği bir Err değeriyse,
+        expect programın çökmesine neden olur ve expect'e argüman olarak aktardığınız mesajı görüntüler.
+        read_line methodu bir Err döndürürse, bu büyük olasılıkla temel işletim sisteminden gelen
+        bir hatanın sonucu olacaktır. Bu Result örneği bir Ok değeriyse, expect Ok'un tuttuğu dönüş
+        değerini alır ve kullanabilmeniz için size yalnızca bu değeri döndürür. Bu durumda, bu değer
+        kullanıcının inputunda ki bayt sayısıdır. Eğer expect'i çağırmazsanız, program derlenir,
+        ancak bir uyarı alırsınız. Rust, read_line'dan dönen Result değerini kullanmadığınız
+        konusunda uyararak programın olası bir hatayı ele almadığını belirtir. Uyarıyı bastırmanın
+        doğru yolu aslında error handling kodu yazmaktır, ancak bizim durumumuzda sadece bir sorun
+        oluştuğunda bu programı çökertmek istiyoruz, bu yüzden expect'i kullanabiliriz. */
+        </span>.expect(<span class="string">"Failed to read line"</span>);
+
+    <span class="comment">/* Bu satır, kullanıcının inputunu içeren String'i yazdırır. Küme parantezlerinin {} kümesi bir
+    yer tutucudur: {}'i bir değeri yerinde tutan küçük yengeç kıskaçları olarak düşünün. Bir değişkenin
+    değerini yazdırırken, değişken adı küme parantezlerinin içine girebilir. Bir ifadenin
+    değerlendirilmesinin sonucunu yazdırırken, biçim dizesine boş küme parantezleri yerleştirin,
+    ardından biçim dizesini her boş küme parantezi yer tutucusuna aynı sırada yazdırılacak ifadelerin
+    virgülle ayrılmış bir listesiyle takip edin.*/
+    </span><span class="macro">println!</span>(<span class="string">"Your guess : {}"</span>, guess);
+}
+
+</code></pre></div></section></main></body></html>
